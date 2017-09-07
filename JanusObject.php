@@ -207,6 +207,21 @@ class Janus
 			return false;
 	}
 
+	function easyRoom($desc,$rec_dir='',$room=0,$bitrate=0)
+	{
+		$params = array();
+		$params['description'] = $desc;
+		if ($bitrate > 0)
+			$params['bitrate'] = $bitrate;
+		if (!empty($rec_dir))
+		{
+			$params['record'] = true;
+			$params['rec_dir'] = $rec_dir;
+		}
+
+		return $this->createRoom($room,$params);
+	}
+
 	function refresh()
 	{
 		$date = date_create();

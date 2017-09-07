@@ -16,7 +16,7 @@ $handle = $janus->attach('janus.plugin.videoroom');
 if ($handle)
 {
 	$room = rand (2000,9000);
-	$params = array('description' => "Test Room $room",
+	/*$params = array('description' => "Test Room $room",
 					'bitrate' => 0,
 					'publishers' => 6,
 					//'rec_dir' => "/tmp",
@@ -24,7 +24,8 @@ if ($handle)
 					//'secret' => $janus->gRS(20),
 					//'pin' => $janus->gRS(5),
 					);
-	if ($ret = $janus->createRoom($room,$params))
+	if ($ret = $janus->createRoom($room,$params)) */
+	if ($ret = $janus->easyRoom("Test Room $room","/tmp",$room))
 		echo "Room $ret created!\n\n";
 	else
 		echo "Could not create room!\n\n";
