@@ -207,10 +207,15 @@ class Janus
 			return false;
 	}
 
-	function easyRoom($desc,$rec_dir='',$room=0,$bitrate=0)
+	function easyRoom($desc,$rec_dir='',$room=0,$bitrate=0,$publishers=6,$secret='')
 	{
+		if (empty($secret))
+			$secret = $this->gRS(20);
+
 		$params = array();
 		$params['description'] = $desc;
+		$params['secret'] = $secret;
+		$params['publishers'] = $publishers;
 		if ($bitrate > 0)
 			$params['bitrate'] = $bitrate;
 		if (!empty($rec_dir))
