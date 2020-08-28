@@ -125,7 +125,7 @@ class Janus
 
 	function destroySession()
 	{
-		$data = '{"janus": "destroy", "transaction": "'.$this->gRS().'","apisecret":"'.$password.'"}';
+		$data = '{"janus": "destroy", "transaction": "'.$this->gRS().'","apisecret":"'.$this->password.'"}';
 		if ($this->callAPI('POST',$data))
 			$this->sessionID = '';
 	}
@@ -141,7 +141,7 @@ class Janus
 			if (!$this->CreateSession())
 				return false;
 
-		$data = '{"janus": "attach", "plugin": "'.$plugin.'", "transaction": "'.$this->gRS().'","apisecret":"'.$password.'"}';
+		$data = '{"janus": "attach", "plugin": "'.$plugin.'", "transaction": "'.$this->gRS().'","apisecret":"'.$this->password.'"}';
 		$result = $this->callAPI('POST',$data);
 		if (isset($this->last_assoc['data']['id']))
 		{
@@ -159,7 +159,7 @@ class Janus
 
 	function detach()
 	{
-		$data = '{"janus":"detach","transaction":"'.$this->gRS().'","apisecret":"'.$password.'"}';
+		$data = '{"janus":"detach","transaction":"'.$this->gRS().'","apisecret":"'.$this->password.'"}';
 		if ($this->callAPI('POST',$data))
 		{
 			$this->handleID = '';
@@ -172,16 +172,16 @@ class Janus
 
 	function sendTrickleCandidate($candidate)
 	{
-		$data = '{"janus": "trickle", "candidate": '.$candidate.', "transaction": "'.$this->gRS().'","apisecret":"'.$password.'"}';
+		$data = '{"janus": "trickle", "candidate": '.$candidate.', "transaction": "'.$this->gRS().'","apisecret":"'.$this->password.'"}';
 		return $this->callAPI('POST',$data);
 	}
 
 	function sendMessage($message, $jsep='')
 	{
 		if ($jsep=='')
-			$data = '{"janus": "message", "body": '.$message.', "transaction": "'.$this->gRS().'","apisecret":"'.$password.'"}';
+			$data = '{"janus": "message", "body": '.$message.', "transaction": "'.$this->gRS().'","apisecret":"'.$this->password.'"}';
 		else
-			$data = '{"janus": "message", "body": '.$message.', "transaction": "'.$this->gRS().'","jsep":'.$jsep.',"apisecret":"'.$password.'"}';
+			$data = '{"janus": "message", "body": '.$message.', "transaction": "'.$this->gRS().'","jsep":'.$jsep.',"apisecret":"'.$this->password.'"}';
 
 		return $this->callAPI('POST',$data);
 	}
